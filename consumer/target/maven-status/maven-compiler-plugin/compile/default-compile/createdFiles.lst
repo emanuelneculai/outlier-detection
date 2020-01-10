@@ -1,0 +1,8 @@
+com\emi\demo\consumer\kafka\deserializer\KafkaDeserializer.class
+com\emi\demo\consumer\service\SensorService.class
+com\emi\demo\consumer\elasticshearch\repository\SensorDataRepository.class
+com\emi\demo\consumer\service\SensorServiceImpl.class
+com\emi\demo\consumer\config\ElasticSearchConfig.class
+com\emi\demo\consumer\ConsumerApp.class
+com\emi\demo\consumer\config\KafkaConfig.class
+com\emi\demo\consumer\kafka\listener\SensorDataListener.class

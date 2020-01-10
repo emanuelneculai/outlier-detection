@@ -1,0 +1,10 @@
+com\emi\demo\webserver\service\SensorDataOutliersServiceImpl.class
+com\emi\demo\webserver\controller\SensorDataOutliersController.class
+com\emi\demo\webserver\service\SensorDataOutliersService.class
+com\emi\demo\webserver\WebServerApp.class
+com\emi\demo\webserver\elasticsearch\repository\SensorDataRepository.class
+com\emi\demo\webserver\service\OutlierDetectorImpl.class
+com\emi\demo\webserver\config\ElasticSearchConfig.class
+com\emi\demo\webserver\model\SensorDataOutliersDTO$SensorDataOutliersDTOBuilder.class
+com\emi\demo\webserver\model\SensorDataOutliersDTO.class
+com\emi\demo\webserver\service\OutlierDetector.class

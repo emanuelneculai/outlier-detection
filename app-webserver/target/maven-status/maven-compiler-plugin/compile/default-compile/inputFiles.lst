@@ -1,0 +1,9 @@
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\controller\SensorDataOutliersController.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\service\OutlierDetectorImpl.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\service\OutlierDetector.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\service\SensorDataOutliersServiceImpl.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\elasticsearch\repository\SensorDataRepository.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\WebServerApp.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\model\SensorDataOutliersDTO.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\config\ElasticSearchConfig.java
+C:\demo_application\app-webserver\src\main\java\com\emi\demo\webserver\service\SensorDataOutliersService.java

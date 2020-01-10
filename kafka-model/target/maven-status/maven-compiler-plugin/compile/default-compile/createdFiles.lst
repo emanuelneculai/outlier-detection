@@ -1,0 +1,3 @@
+com\emi\demo\kafka\model\sensor\data\KafkaSensorData$KafkaSensorDataBuilder.class
+com\emi\demo\kafka\model\sensor\format\DateFormatConfig.class
+com\emi\demo\kafka\model\sensor\data\KafkaSensorData.class

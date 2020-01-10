@@ -1,0 +1,97 @@
+version: "2.3"
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    expose:
+      - "2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    restart: always
+    mem_limit: 128m
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    hostname: kafka
+    command: [start-kafka.sh]
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    expose:
+      - "9093"
+    environment:
+      HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://_{HOSTNAME_COMMAND}:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://kafka:9093,OUTSIDE://_{HOSTNAME_COMMAND}:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_CREATE_TOPICS: "sensor:1:1"
+      restart: always
+    mem_limit: 256m
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
+    container_name: elasticsearch
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    expose:
+      - "9200"
+      - "9300"
+    mem_limit: 1500m
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.4.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    mem_limit: 2000m
+  publisher:
+    build: publisher
+    image: publisher
+    ports:
+      - "8081:8081"
+    command: java -jar -Dspring.profiles.active=docker publisher-1.0-SNAPSHOT.jar
+    mem_limit: 512m
+  consumer:
+    build: consumer
+    image: consumer
+    ports:
+      - "8082:8082"
+    command: java -jar -Dspring.profiles.active=docker consumer-1.0-SNAPSHOT.jar
+    mem_limit: 512m
+    links:
+      - elasticsearch
+  app-webserver:
+    build: app-webserver
+    image: app-webserver
+    ports:
+      - "8083:8083"
+    command: java -jar -Dspring.profiles.active=docker app-webserver-1.0-SNAPSHOT.jar
+    mem_limit: 512m
+    links:
+      - elasticsearch

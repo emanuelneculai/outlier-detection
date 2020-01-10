@@ -1,0 +1,13 @@
+--DOCKER
+docker images -> list images
+docker rm [containerName] -> remove a container
+docker rmi [imageId] -> remove image
+docker build . -t [imageName] -> build an image from Dockerfile(located in current directory)
+docker run [imageName] -> run an image
+docker container ls -a -> list all containers
+docker-compose up -> start docker
+docker exec -it [mycontainer] sh
+docker stop [mycontainer] -> stop container
+
+--KAFKA
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sensor --from-beginning -> see messages

@@ -1,5 +1,5 @@
 @echo off
-title Build All
+title MVN Build All
 
 call mvn clean install
 

@@ -1,5 +1,6 @@
 package com.emi.demo.elasticshearch.model.sensor.data;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +21,10 @@ import java.util.Date;
 public class SensorData {
 
 	@Id
-	@Field(type = FieldType.Date, store = true, format = DateFormat.custom, pattern = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'")
+	private Long id;
+
+	@Field(type = FieldType.Date, store = true,  format = DateFormat.custom, pattern = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'")
+	@JsonFormat (shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd'T'hh:mm:ss.SSS'Z'")
 	private Date time;
 
 	private String publisher;

@@ -1,6 +1,7 @@
 @echo off
 title Stop all
 
-call docker stop $(docker ps -a -q)
+echo Stopping all docker containers
+FOR /f "tokens=*" %%i IN ('docker ps -q') DO docker stop %%i
 
 pause

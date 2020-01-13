@@ -17,9 +17,10 @@ public class SensorServiceImpl implements SensorService {
 	public void processSensorData(KafkaSensorData kafkaSensorData) {
 
 		sensorDataRepository.save(SensorData.builder()
-		.publisher(kafkaSensorData.getPublisher())
-		.time(kafkaSensorData.getTime())
-		.median(new Median().evaluate(kafkaSensorData.getReadings())).build());
+				.id(kafkaSensorData.getTime().getTime())
+				.publisher(kafkaSensorData.getPublisher())
+				.time(kafkaSensorData.getTime())
+				.median(new Median().evaluate(kafkaSensorData.getReadings())).build());
 
 	}
 
